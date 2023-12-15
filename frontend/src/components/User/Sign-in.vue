@@ -1,0 +1,53 @@
+<template>
+    <v-sheet width="300" class="mx-auto">
+      <v-form fast-fail @submit.prevent>
+        <v-text-field
+          v-model="email"
+          color="secondary"
+          label="Email"
+          placeholder="Enter your email address"
+          :rules="emailRules"
+          variant="underlined"
+          name="input-10-1"
+        ></v-text-field>
+  
+        <v-text-field
+        v-model="password"
+        color="secondary"
+        label="Password"
+        placeholder="Enter your password"
+        variant="underlined"
+        :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="show ? 'text' : 'password'"
+        name="input-10-1"
+        counter
+        @click:append="show = !show"
+        ></v-text-field>
+
+        <v-checkbox
+        v-model="rememberMe"
+        color="secondary"
+        label="Remember me"
+      ></v-checkbox>
+  
+        <v-btn 
+        variant="flat"
+        color="primary" type="submit" block class="mt-2">Sign in</v-btn>
+      </v-form>
+    </v-sheet>
+  </template>
+
+  <script>
+  export default {
+    data: () => ({
+      rememberMe: null,
+      email: null,
+      password: null,
+      show: false,
+      emailRules: [
+        value => {
+        },
+      ]
+    }),
+  }
+</script>
