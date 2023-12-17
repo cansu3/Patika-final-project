@@ -10,6 +10,11 @@ export const useFactoryDetailStore = defineStore("factoryDetailStore", {
             {id: 1, baseUnit: "FactoryDetail 1", dateRange: "11.06.2023", usage: 3, usageFee:1 ,discountedPrice: true},
             {id: 1, baseUnit: "FactoryDetail 1", dateRange: "11.06.2023", usage: 3, usageFee:1 ,discountedPrice: true},
             {id: 1, baseUnit: "FactoryDetail 1", dateRange: "11.06.2023", usage: 3, usageFee:1 ,discountedPrice: true},
+            {id: 1, baseUnit: "FactoryDetail 1", dateRange: "11.06.2023", usage: 3, usageFee:1 ,discountedPrice: true},
+            {id: 1, baseUnit: "FactoryDetail 1", dateRange: "11.06.2023", usage: 3, usageFee:1 ,discountedPrice: true},
+            {id: 1, baseUnit: "FactoryDetail 1", dateRange: "11.06.2023", usage: 3, usageFee:1 ,discountedPrice: true},
+            {id: 1, baseUnit: "FactoryDetail 1", dateRange: "11.06.2023", usage: 3, usageFee:1 ,discountedPrice: true},
+            {id: 1, baseUnit: "FactoryDetail 1", dateRange: "11.06.2023", usage: 3, usageFee:1 ,discountedPrice: true}
         ]
     }),
     getters: {

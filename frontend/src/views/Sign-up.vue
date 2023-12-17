@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height >
     <!-- Center the content vertically -->
-    <v-row>
+    <v-row style="margin: 3%;">
       <!-- Your Logo component goes here -->
       <v-col>
         <v-row class="align-center"><Logo /></v-row>
