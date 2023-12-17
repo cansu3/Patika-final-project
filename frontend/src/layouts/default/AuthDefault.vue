@@ -7,7 +7,7 @@
   </template>
   
   <script setup>
-    import DefaultBar from './AppBar.vue'
+    import DefaultBar from './AuthBar.vue'
     import DefaultView from './View.vue'
   </script>
   

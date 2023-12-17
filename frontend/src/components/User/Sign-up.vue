@@ -1,5 +1,5 @@
 <template>
-  <v-card
+  <v-card style="padding: 1em; border: 0.5px solid #f29b8d;"
     class="mx-auto"
     max-width="344"
     title="User Registration"
