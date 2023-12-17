@@ -1,23 +1,30 @@
 import {
     IsNotEmpty,
     IsString,
-    IsEmail,
     IsInt,
-    Min,
-    Max,
+    IsBoolean,
+    IsDate,
+    isNumber,
+    isString,
   } from 'class-validator';
   
   export class UpdateFactoryDto {
+    @IsString()
+    id: string;
+
     @IsNotEmpty()
     @IsString()
     name: string;
   
-    @IsNotEmpty()
-    @IsEmail()
-    email: string;
+    @IsDate()
+    startDate: Date;
   
+    @IsDate()
+    endDate: Date;
+
     @IsInt()
-    @Min(18)
-    @Max(45)
-    age: number;
+    numberOfEmployee: number;
+
+    @IsBoolean()
+    isFree: boolean;
   }

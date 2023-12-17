@@ -1,0 +1,25 @@
+get http://localhost:3001/factories/1 HTTP/1.1
+content-type: application/json
+
+{
+    "id": 3,
+    "name": "Factory 1 (Updated)",
+    "startDate": "2022-12-31T21:00:00.000Z",
+    "endDate": "2022-12-31T21:00:00.000Z",
+    "numberOfEmployee": 5,
+    "isFree": true
+}
+####
+get http://localhost:3001/factory-details/1/detail/1 HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "factoryId": 1,
+    "department": "Production 1 (Updated)",
+    "startDate": "2022-12-31T21:00:00.000Z",
+    "endDate": "2022-12-31T21:00:00.000Z",
+    "usage": 3,
+    "usageFee": 5,
+    "discountedPrice": true
+}
