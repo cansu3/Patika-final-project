@@ -10,7 +10,7 @@ content-type: application/json
     "isFree": true
 }
 ####
-get http://localhost:3001/factory-details/1/detail/1 HTTP/1.1
+patch http://localhost:3001/factory-details/1/detail/1 HTTP/1.1
 content-type: application/json
 
 {
@@ -19,7 +19,21 @@ content-type: application/json
     "department": "Production 1 (Updated)",
     "startDate": "2022-12-31T21:00:00.000Z",
     "endDate": "2022-12-31T21:00:00.000Z",
-    "usage": 3,
+    "usage":3,
     "usageFee": 5,
     "discountedPrice": true
 }
+
+####
+post http://localhost:3001/users HTTP/1.1
+content-type: application/json
+
+{
+    "username": "cansu_000c",
+    "email": "cansucil0c@gmail.com",
+    "role": "ADMIN",
+    "password": "Test123..."
+}
+###
+get http://localhost:3001/users/lPDteYwBozGtdTGxu16_ HTTP/1.1
+content-type: application/json

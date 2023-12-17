@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import pool from './database/postgresql-db.config';
+import elasticClient from './database/elasticsearch-db.config';
 
 @Injectable()
 export class AppService {
@@ -46,7 +47,9 @@ export class AppService {
     
     `);
     */
-    const result = await client.query(`select * from factorydetails`)
+    const result = await client.query(`select * from factorydetails`);
+    console.log(elasticClient);
+
       return result.rows;
     } finally {
       client.release();
