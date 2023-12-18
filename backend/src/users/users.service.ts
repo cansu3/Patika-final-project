@@ -23,6 +23,24 @@ export class UsersService {
         } finally {
         }
       }
+
+      async findUser(email: string): Promise<any>  {
+
+        try {
+            const result = await elasticClient.search({
+                index: "users",
+                body: {
+                    query: {
+                        match: {
+                            email: email
+                        }
+                    }
+                }
+            });
+          return result.hits.hits[0]._source;
+        } finally {
+        }
+      }
   async createUser(payload: CreateUserDto) {
 
     try {

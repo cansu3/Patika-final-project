@@ -12,6 +12,7 @@ content-type: application/json
 ####
 patch http://localhost:3001/factory-details/1/detail/1 HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhbnN1Y2lsMGNAZ21haWwuY29tIiwiaWF0IjoxNzAyOTE2Nzk1LCJleHAiOjE3MDI5NTk5OTV9.DpwrxWLHlJZouWvGNTkn0c5s5RdpCFe6gZvR2rqGAG8
 
 {
     "id": 1,
@@ -37,3 +38,20 @@ content-type: application/json
 ###
 get http://localhost:3001/users/lPDteYwBozGtdTGxu16_ HTTP/1.1
 content-type: application/json
+
+###
+post http://localhost:3001/auth/sign-in HTTP/1.1 
+content-type: application/json
+{
+  "email": "cansu_000c",
+  "password": "Test123..."
+}
+####
+
+post http://localhost:3001/auth/sign-in HTTP/1.1
+content-type: application/json
+
+{
+    "email": "cansucil0c@gmail.com",
+    "password": "Test123..."
+}

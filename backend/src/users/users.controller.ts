@@ -8,7 +8,9 @@ import {
   
   import { UsersService } from './users.service';
   import { CreateUserDto } from './dto/create-user.dto';
-  
+  import { Public } from '../auth/auth.decorator'; // Bu yolu kendi projenize göre güncelleyin
+
+
   @Controller('users')
   export class UsersController {
     constructor(private readonly UsersService: UsersService) {}
@@ -18,7 +20,7 @@ import {
     async getUser(@Param('id') id: string) {
       return this.UsersService.getUser(id);
     }
-  
+    @Public()
     @Post()
     async creteUser(
       @Body() CreateUserDto: CreateUserDto,
