@@ -79,8 +79,7 @@ const authStore = useAuthStore();
      const result = await userStore.createUser(userName,userRole,email,password)
      if (result.status==201) {
       
-      const res = await authStore.signIn(email,password)
-      this.$router.push({ name: 'Home' });
+      this.$router.push({ name: 'Sign-in' });
       }  
      }
     }
