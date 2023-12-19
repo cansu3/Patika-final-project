@@ -8,12 +8,13 @@ import {
   
   import { FactoryDetailsService } from './factory-details.service';
   import { UpdateFactoryDetailDto } from './dto/update-factory-detail.dto';
+  import { Public } from '../auth/auth.decorator'; 
   
   @Controller('factory-details')
   export class FactoryDetailsController {
     constructor(private readonly FactoryDetailsService: FactoryDetailsService) {}
  
-  
+    @Public()
     @Get(':factoryId')
     async getFactoryDetails(@Param('factoryId') factoryId: string) {
       return this.FactoryDetailsService.getFactoryDetails(factoryId);

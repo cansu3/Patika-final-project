@@ -15,7 +15,7 @@ const routes = [
         component: () => import('@/views/Home.vue'),
       },
       {
-        path: '/factory-details',
+        path: '/factory-details/:id',
         name: 'FactoryDetails',
         // route level code-splitting
         // this generates a separate chunk (Home-[hash].js) for this route

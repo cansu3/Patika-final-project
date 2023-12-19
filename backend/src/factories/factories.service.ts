@@ -11,7 +11,20 @@ export class FactoriesService {
 
     try {
       const result = await client.query(`select * from factories`);
-      return result.rows;
+      const modifiedRows = [];
+
+      for (const row of result.rows) {
+        const modifiedRow = {id: row.id,
+                            name : row.name,
+                            startDate:row.startdate,
+                            endDate:row.enddate,
+                            numberOfEmployee:row.numberofemployee,
+                            isFree:row.isfree};
+
+        modifiedRows.push(modifiedRow);
+      }
+
+    return modifiedRows;
     } finally {
       client.release();
     }

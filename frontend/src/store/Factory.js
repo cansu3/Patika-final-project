@@ -1,11 +1,25 @@
 import { defineStore } from 'pinia'
+import axios from 'axios';
+
+import { useAuthStore } from '@/store/auth.js';
+const authStore = useAuthStore();
+
+const baseURL = 'http://localhost:3001/factories';
+
+const apiClient = axios.create({
+  baseURL,
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer '+authStore.access_token
+    // You can add common headers here
+  },
+});
+
 
 export const useFactoryStore = defineStore("factoryStore", {
     state: () => ({
-        factory: [
-            {id: 1, name: "Factory 1", startDate: "11.06.2023", endDate: "11.06.2023", numberOfEmployee:1 ,isFreeMember: false},
-            {id: 2, name: "Factory 2", startDate: "10.06.2023", endDate: "11.06.2023", numberOfEmployee:5, isFreeMember: true},
-        ]
+        factory: [],
+        loading: false
     }),
     getters: {
         favs(){
@@ -24,17 +38,25 @@ export const useFactoryStore = defineStore("factoryStore", {
         }
     },
     actions: {
-        createFactory(factory){
-            this.factory.push(factory)
+        async fetchFactories(){
+            this.loading = true
+            const result = await apiClient.get(baseURL)
+            
+            const data = await result.data
+            this.factory = data
+            this.loading = false
         },
-        toggleFav(id){
-            const factory = this.factory.find(factory => factory.id === id)
-            factory.isFreeMember = !factory.isFreeMember
-        },
-        deleteFactory(id){
-            this.factory = this.factory.filter(factory => {
-                return factory.id !== id
-            })
-        }
+        
+          async getFactory(id) {
+        
+            const result = await apiClient.get(baseURL+'/'+id)
+            return result ;
+          },
+        
+          async updateFactory(id,factory) {
+         
+            const result = await apiClient.patch(baseURL+'/'+id, factory)
+            return result ;
+          },
     }
 })

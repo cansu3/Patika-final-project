@@ -1,11 +1,11 @@
 <template>
   <v-container class="fill-height">
     <v-responsive class="align-center fill-height">
-      <v-card class="elevation-1" style="background-color: #efedf0;">
+      <v-card class="elevation-1" >
         <v-card-title :style="{ color: $vuetify.theme.themes.light.colors.primary }">
           <span class="headline">Factories</span>
         </v-card-title>
-        <v-table height="300px" style="background-color: #efedf0;">
+        <v-table height="500px" style="background-color: #efedf0;">
           <thead>
             <tr>
               <th class="text-left">
@@ -34,7 +34,7 @@
           <tbody>
             <tr v-for="item in factory" :key="item.id">
               <td>
-                <v-btn class="align-center" text href="/factory-details">
+                <v-btn class="align-center" text @click="redirectToFactoryDetails(item.id)">
                   <v-icon>mdi-eye</v-icon>
                 </v-btn>
               </td>
@@ -43,12 +43,12 @@
               <td>{{ item.startDate }}</td>
               <td>{{ item.endDate }}</td>
               <td>{{ item.numberOfEmployee }}</td>
-              <td>{{ item.isFreeMember }}</td>
+              <td>{{ item.isFree }}</td>
               <td> 
                 <!--<v-btn class="align-center" text @click.stop="showFactoryForm=true">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>-->
-                <FactoryForm :visible="showFactoryForm" @close="showFactoryForm=false" />
+                <FactoryForm :visible="showFactoryForm" :factoryInfo="item" @close="showFactoryForm=false" />
               </td>
               
             </tr>
@@ -67,7 +67,6 @@ export default {
   props: ['factory'],
   setup() {
     const factoryStore = useFactoryStore()
-
     return { factoryStore }
   },
   data () {
@@ -77,6 +76,14 @@ export default {
   },
   components: {
     FactoryForm
+  },
+  methods: {
+    redirectToFactoryDetails(id) {
+      // Pinia store'u kullanarak sayfa yönlendirme metodunu çağır
+      this.$router.push({ name: 'FactoryDetails', params: { id: id } });
+      
+      
+    }
   }
 }
 

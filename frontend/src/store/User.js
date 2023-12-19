@@ -1,20 +1,30 @@
 import { defineStore } from 'pinia'
+import axios from 'axios';
+
+const baseURL = 'http://localhost:3001/users';
+
+const apiClient = axios.create({
+  baseURL,
+  headers: {
+    'Content-Type': 'application/json',
+    // You can add common headers here
+  },
+});
 
 export const useUserStore = defineStore("UserStore", {
     state: () => ({
-        factory: [
-            {id: 1, username: "Cansu", emailAddress: "cansuucil99@gmail.com", password: "123", role:"ADMIN" },
-            {id: 1, username: "Cansu", emailAddress: "cansuucil99@gmail.com", password: "123", role:"EDITOR" },
-        ]
+        user:{}
     }),
     getters: {
-        getUsers(){
-            return users
+        getUser(){
+            return user
         },
     },
     actions: {
-        createUser(user){
-            this.user.push(user)
+        async createUser(userName,userRole,email,password){
+            const data = {userName,userRole,email,password }
+            const result = await apiClient.post(baseURL, data)
+            return result;
         },
     }
 })

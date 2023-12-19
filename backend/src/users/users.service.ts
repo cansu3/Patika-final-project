@@ -48,7 +48,6 @@ export class UsersService {
             index: "users",
             document:payload
           });
-
       return {id: result._id};
     } finally {
     }

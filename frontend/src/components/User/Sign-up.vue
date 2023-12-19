@@ -50,7 +50,7 @@
     <v-card-actions>
       <v-spacer></v-spacer>
 
-      <v-btn color="primary">
+      <v-btn color="primary" @click="signUp(userName,userRole,email,password)">
         Sign up
 
         <v-icon icon="mdi-chevron-right" end></v-icon>
@@ -60,6 +60,11 @@
 </template>
 
 <script>
+import { useUserStore } from '@/store/User.js';
+const userStore = useUserStore();
+import { useAuthStore } from '@/store/auth.js';
+const authStore = useAuthStore();
+
   export default {
     data: () => ({
       userName: null,
@@ -69,5 +74,16 @@
       terms: false,
       show: false,
     }),
+    methods: {
+    async signUp (userName,userRole,email,password) {
+     const result = await userStore.createUser(userName,userRole,email,password)
+     if (result.status==201) {
+      
+      const res = await authStore.signIn(email,password)
+      this.$router.push({ name: 'Home' });
+      }  
+     }
+    }
   }
+
 </script>

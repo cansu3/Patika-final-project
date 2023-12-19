@@ -10,12 +10,14 @@
 
       <v-checkbox v-model="rememberMe" color="secondary" label="Remember me"></v-checkbox>
 
-      <v-btn variant="flat" color="primary" type="submit" block class="mt-2">Sign in</v-btn>
+      <v-btn variant="flat" color="primary" type="submit" block class="mt-2" @click="signIn(email,password)">Sign in </v-btn>
     </v-form>
   </v-sheet>
 </template>
 
 <script>
+import { useAuthStore } from '@/store/auth.js';
+const authStore=useAuthStore();
 export default {
   data: () => ({
     rememberMe: null,
@@ -27,5 +29,13 @@ export default {
       },
     ]
   }),
+  methods: {
+    async signIn(email,password) {
+     const result = await authStore.signIn(email,password)
+     if (result.status==200) {
+      this.$router.push({ name: 'Home' });
+     }
+    }
+  }
 }
 </script>

@@ -11,7 +11,22 @@ export class FactoryDetailsService {
 
     try {
       const result = await client.query(`select * from factorydetails where factoryid = `+factoryId);
-      return result.rows;
+      const modifiedRows = [];
+
+      for (const row of result.rows) {
+        const modifiedRow = {id: row.id,
+                            factoryId : row.factoryid,
+                            department:row.department,
+                            startDate:row.startdate,
+                            endDate:row.enddate,
+                            usage:row.usage,
+                            usageFee:row.usagefee,
+                            discountedPrice:row.discountedprice};
+
+        modifiedRows.push(modifiedRow);
+      }
+
+    return modifiedRows;
     } finally {
       client.release();
     }

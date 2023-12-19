@@ -1,24 +1,27 @@
 <template>
   <v-container class="fill-height">
     <v-responsive class="align-center fill-height">
-      <v-card class="elevation-1" style="background-color: #efedf0;">
-        <v-card-title :style="{color: $vuetify.theme.themes.light.colors.primary }">
+      <v-card class="elevation-1" >
+        <v-card-title :style="{color: $vuetify.theme.themes.light.colors.primary } ">
           <span class="headline">Factory Details</span>
         </v-card-title>
-        <v-table class="elevation-1" color="primary lighten-4" height="400px" style="background-color: #efedf0;">
-          <thead style="position: sticky; top: 0; background: white; z-index:1">
+        <v-table class="elevation-1" color="primary lighten-4" height="400px" style="background-color: #efedf0;" >
+          <thead style="position: sticky; top: 0; z-index:1">
             <tr>
               <th class="text-left head-column border">
-                Base Unit
+                Department
               </th>
               <th class="text-left head-column border">
-                Date Range
+                Start Date
+              </th>
+              <th class="text-left head-column border">
+                End Date
               </th>
               <th class="text-left head-column border">
                 Usage
               </th>
               <th class="text-left head-column border">
-                Usage Free
+                Usage ree
               </th>
               <th class="text-left head-column border">
                 Discounted Price
@@ -30,8 +33,9 @@
           </thead>
           <tbody>
             <tr v-for="item in factoryDetail" :key="item.id">
-              <td class="border">{{ item.baseUnit }}</td>
-              <td class="border">{{ item.dateRange }}</td>
+              <td class="border">{{ item.department }}</td>
+              <td class="border">{{ item.startDate }}</td>
+              <td class="border">{{ item.endDate }}</td>
               <td class="border">{{ item.usage }}</td>
               <td class="border">{{ item.usageFee }}</td>
               <td class="border">{{ item.discountedPrice }}</td>
@@ -58,8 +62,10 @@ export default {
   props: ['factoryDetail'],
   setup() {
     const factoryDetailStore = useFactoryDetailStore()
-
     return { factoryDetailStore }
+  },
+  methods: {
+   
   }
 }
 </script>
