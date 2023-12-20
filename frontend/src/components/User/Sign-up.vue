@@ -12,30 +12,33 @@
         variant="underlined"
       ></v-text-field>
 
-      <v-text-field
+      <v-select
         v-model="userRole"
         color="secondary"
         label="User Role"
         variant="underlined"
-      ></v-text-field>
+        :items="['ADMIN', 'EDITOR']"
+      ></v-select>
 
       <v-text-field
         v-model="email"
         color="secondary"
         label="Email"
         variant="underlined"
+        :rules="emailRules"
       ></v-text-field>
 
       <v-text-field
-      v-model="password"
-      color="secondary"
-      label="Password"
-      variant="underlined"
-      :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="show ? 'text' : 'password'"
-      name="input-10-1"
-      counter
-      @click:append="show = !show"
+        v-model="password"
+        color="secondary"
+        label="Password"
+        variant="underlined"
+        :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="show ? 'text' : 'password'"
+        name="input-10-1"
+        counter
+        @click:append="show = !show"
+        :rules="passwordRules"
       ></v-text-field>
 
       <v-checkbox
@@ -50,9 +53,8 @@
     <v-card-actions>
       <v-spacer></v-spacer>
 
-      <v-btn color="primary" @click="signUp(userName,userRole,email,password)">
+      <v-btn color="primary" type="submit" variant="flat" block class="mt-2"  @click="signUp(userName, userRole, email, password)">
         Sign up
-
         <v-icon icon="mdi-chevron-right" end></v-icon>
       </v-btn>
     </v-card-actions>
@@ -65,24 +67,32 @@ const userStore = useUserStore();
 import { useAuthStore } from '@/store/auth.js';
 const authStore = useAuthStore();
 
-  export default {
-    data: () => ({
-      userName: null,
-      userRole: null,
-      email: null,
-      password: null,
-      terms: false,
-      show: false,
-    }),
-    methods: {
-    async signUp (userName,userRole,email,password) {
-     const result = await userStore.createUser(userName,userRole,email,password)
-     if (result.status==201) {
-      
-      this.$router.push({ name: 'Sign-in' });
-      }  
-     }
+export default {
+  data: () => ({
+    userName: null,
+    userRole: null,
+    email: null,
+    password: null,
+    terms: false,
+    show: false,
+    emailRules: [
+      value => !!value || 'Email is required',
+      value => /.+@.+\..+/.test(value) || 'Invalid email',
+    ],
+    passwordRules: [
+      value => !!value || 'Password is required',
+      value => value.length >= 8 || 'Password must be at least 8 characters',
+      value => /[A-Z]/.test(value) || 'Password must contain at least one uppercase letter',
+      value => /\d/.test(value) || 'Password must contain at least one numeric character',
+    ],
+  }),
+  methods: {
+    async signUp(userName, userRole, email, password) {
+      const result = await userStore.createUser(userName, userRole, email, password);
+      if (result.status == 201) {
+        this.$router.push({ name: 'Sign-in' });
+      }
     }
   }
-
+}
 </script>
