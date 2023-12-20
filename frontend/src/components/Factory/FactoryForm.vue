@@ -20,7 +20,7 @@
                 <v-text-field v-model="factoryInfo.numberOfEmployee" type="number" label="Number of Employees" required ></v-text-field>
               </v-col>
               <v-col cols="12" sm="6">
-                <v-select v-model="factoryInfo.isFree" :items=itemsSelect item-title="title" item-value="valu" label="Free Member*" required></v-select>
+                <v-select v-model="factoryInfo.isFree" :items=itemsSelect item-title="title" item-value="valu" label="Free Member" required></v-select>
               </v-col>
               <v-col cols="12" sm="6" class="text-center" >
                 <label for="startdatepicker">Start Date</label>
